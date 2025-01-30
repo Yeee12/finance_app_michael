@@ -26,7 +26,7 @@ class TimeFrameSelector extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
             decoration: BoxDecoration(
               color: isSelected ? AppColors.accent.withOpacity(0.5) : Colors.transparent,
-              borderRadius: BorderRadius.circular(10.r),
+              borderRadius: BorderRadius.circular(20.r),
             ),
             child: Text(
               timeFrame,

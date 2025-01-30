@@ -9,6 +9,6 @@ class AppColors {
   static const Color textSecondary = Colors.grey;
 
   static const Color accent = Colors.grey; // Consider using a distinct accent color
-  static const Color shadow = Colors.black12;
+  static const Color shadow = Colors.black26;
   static const Color blueText = Colors.blue;
 }

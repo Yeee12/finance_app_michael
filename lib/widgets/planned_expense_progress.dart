@@ -23,9 +23,10 @@ class PlannedExpenseProgress extends StatelessWidget {
         borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: AppColors.shadow,
-            blurRadius: 8.r,
-            spreadRadius: 2.r,
+            color: AppColors.shadow.withOpacity(0.04),// Reduce shadow intensity
+            blurRadius: 1, // Decreased from 8
+            spreadRadius: 1, // Reduced spread
+            // offset: const Offset(0, 1), // Less shadow distance
           ),
         ],
       ),
@@ -39,7 +40,7 @@ class PlannedExpenseProgress extends StatelessWidget {
               Text(
                 'Planned expenses',
                 style: GoogleFonts.roboto(
-                  fontSize: 18.sp,
+                  fontSize: 14.sp,
                   fontWeight: FontWeight.bold,
                   color: AppColors.textPrimary,
                 ),
@@ -50,7 +51,7 @@ class PlannedExpenseProgress extends StatelessWidget {
                   'View details',
                   style: GoogleFonts.roboto(
                     color: AppColors.blueText,
-                    fontSize: 14.sp,
+                    fontSize: 12.sp,
                   ),
                 ),
               ),
@@ -121,15 +122,17 @@ class PlannedExpenseProgress extends StatelessWidget {
                           style: GoogleFonts.roboto(
                             fontSize: 14.sp,
                             color: AppColors.textPrimary,
+                            fontWeight: FontWeight.bold,
                           ),
                         ),
                       ],
                     ),
                     Text(
-                      '${expense.percentage.toStringAsFixed(1)}%',
+                      '${expense.percentage.toStringAsFixed(0)}%',
                       style: GoogleFonts.roboto(
-                        fontSize: 14.sp,
-                        color: AppColors.textSecondary,
+                        fontSize: 13.sp,
+                        color: AppColors.textPrimary,
+                        fontWeight: FontWeight.bold
                       ),
                     ),
                   ],

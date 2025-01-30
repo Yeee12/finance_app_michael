@@ -12,79 +12,78 @@ class UpcomingPaymentItem extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme; // Access textTheme
 
-    return SizedBox(
-      height: 140.h, // Ensuring a fixed height
-      child: SingleChildScrollView(
-        physics: const BouncingScrollPhysics(), // Enables smooth scrolling
-        child: Container(
-          padding: EdgeInsets.all(16.w),
-          decoration: BoxDecoration(
-            color: AppColors.card,
-            borderRadius: BorderRadius.circular(16.r),
-            boxShadow: [
-              BoxShadow(
-                color: AppColors.shadow,
-                blurRadius: 8,
-                spreadRadius: 2,
-                offset: const Offset(0, 4),
-              ),
-            ],
+    return Container(
+      padding: EdgeInsets.all(16.w),
+      constraints: BoxConstraints(minHeight: 190.h), // Allows dynamic height
+      decoration: BoxDecoration(
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(16.r),
+        boxShadow: [
+          BoxShadow(
+            color: AppColors.shadow.withOpacity(0.04),// Reduce shadow intensity
+            blurRadius: 1, // Decreased from 8
+            spreadRadius: 1, // Reduced spread
+            // offset: const Offset(0, 1), // Less shadow distance
           ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisSize: MainAxisSize.min, // Prevents unnecessary expansion
+        ],
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min, // Allows content to define height
+        children: [
+          Row(
             children: [
-              // Row with Logo & Title
-              Row(
-                children: [
-                  Container(
-                    width: 40.w,
-                    height: 40.h,
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      color: AppColors.background,
-                      boxShadow: [
-                        BoxShadow(
-                          color: AppColors.shadow,
-                          blurRadius: 3,
-                          spreadRadius: 1,
-                          offset: const Offset(0, 4),
-                        ),
-                      ],
+              Container(
+                width: 40.w,
+                height: 40.h,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: Colors.grey.shade200,
+                  boxShadow: [
+                    BoxShadow(
+                      color: AppColors.shadow.withOpacity(0.1), // Reduce shadow intensity
+                      blurRadius: 1, // Decreased from 8
+                      spreadRadius: 1, // Reduced spread
+                      // offset: const Offset(0, 1), // Less shadow distance
                     ),
-                    child: Center(
-                      child: Image.asset(
-                        payment.imagePath,
-                        width: 20.w,
-                        height: 20.h,
-                        fit: BoxFit.contain,
-                      ),
-                    ),
+                  ],
+                ),
+                child: Center(
+                  child: Image.asset(
+                    payment.imagePath,
+                    width: 20.w,
+                    height: 20.h,
+                    fit: BoxFit.contain,
                   ),
-                  SizedBox(width: 12.w),
-                  Expanded(
-                    child: Text(
-                      payment.title,
-                      style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
-                      overflow: TextOverflow.ellipsis,
-                    ),
-                  ),
-                ],
+                ),
               ),
-              SizedBox(height: 8.h),
-
-              // Price & Next Payment Date
-              Text(
-                "\$${payment.amount.toStringAsFixed(2)}",
-                style: textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.bold),
-              ),
-              Text(
-                payment.dueDate,
-                style: textTheme.bodyMedium?.copyWith(color: AppColors.textSecondary),
+              SizedBox(width: 12.w),
+              Expanded(
+                child: Text(
+                  payment.title,
+                  style: textTheme.bodyMedium?.copyWith(fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
+                ),
               ),
             ],
           ),
-        ),
+          SizedBox(height: 20.h),
+
+          // Price & Next Payment Date
+          Text(
+            "\$${payment.amount.toStringAsFixed(2)}",
+            style: textTheme.bodySmall?.copyWith(fontWeight: FontWeight.bold, fontSize: 14),
+          ),
+          SizedBox(height: 10.h),
+          Text(
+            payment.dueDate,
+            style: textTheme.bodySmall?.copyWith(
+              color: AppColors.textSecondary,
+              fontWeight: FontWeight.bold,
+              fontSize: 10,
+            ),
+          ),
+        ],
       ),
     );
   }

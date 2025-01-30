@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       backgroundColor: AppColors.background,  // Using AppColors for background color
@@ -52,22 +51,22 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             Padding(
-              padding: EdgeInsets.all(16.w),
+              padding: EdgeInsets.all(6.w),
               child: Container(
-                width: double.infinity,
-                height: 480.h,
-                padding: EdgeInsets.all(16.w),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12.r),
-                  color: AppColors.card,  // Card color from AppColors
-                  boxShadow: [
-                    BoxShadow(
-                      color: AppColors.shadow,  // Shadow color from AppColors
-                      blurRadius: 10,
-                      spreadRadius: 1,
-                    ),
-                  ],
-                ),
+                width: 500.w,
+                height: 390.h,
+                // padding: EdgeInsets.all(16.w),
+                // decoration: BoxDecoration(
+                //   borderRadius: BorderRadius.circular(12.r),
+                //   color: AppColors.card,  // Card color from AppColors
+                //   boxShadow: [
+                //     BoxShadow(
+                //       color: AppColors.shadow,  // Shadow color from AppColors
+                //       blurRadius: 5,
+                //       spreadRadius: 1,
+                //     ),
+                //   ],
+                // ),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(12.r),
                   child: Stack(
@@ -89,56 +88,63 @@ class _HomeScreenState extends State<HomeScreen> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(
-                              "Total Balance",
+                              "Total balance",
                               style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.background),
                             ),
                             Container(
                               width: 130.w,
-                              height: 30.h,
+                              height: 50.h,
                               decoration: BoxDecoration(
                                 color: AppColors.background, // Slight opacity for primary color
-                                borderRadius: BorderRadius.circular(20.r),
+                                borderRadius: BorderRadius.circular(25.r),
                               ),
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<String>(
-                                  value: viewModel.accountType,
-                                  isExpanded: true,
-                                  dropdownColor: AppColors.primary.withOpacity(0.1),
-                                  icon: Icon(Icons.arrow_drop_down, color: AppColors.primary),
-                                  style: theme.textTheme.bodyMedium?.copyWith(color: AppColors.primary),
-                                  items: ["Main account", "Savings"].map(
-                                        (e) => DropdownMenuItem<String>(
-                                      value: e,
-                                      child: Center(
-                                        child: Text(e, textAlign: TextAlign.center),
-                                      ),
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<String>(
+                                    value: viewModel.accountType,
+                                    dropdownColor: Colors.white, // Set the dropdown background color to white
+                                    icon: Icon(Icons.keyboard_arrow_down, color: AppColors.primary),
+                                    style: theme.textTheme.bodySmall?.copyWith(
+                                      color: AppColors.primary,
+                                      fontWeight: FontWeight.bold,
                                     ),
-                                  ).toList(),
-                                  onChanged: (value) {
-                                    if (value != null) {
-                                      viewModel.changeAccountType(value);
-                                    }
-                                  },
+                                    items: ["Main account", "Savings"].map(
+                                          (e) => DropdownMenuItem<String>(
+                                        value: e,
+                                        child: Text(
+                                          e,
+                                          style: TextStyle(color: Colors.black), // Set the text color to black
+                                        ),
+                                      ),
+                                    ).toList(),
+                                    onChanged: (value) {
+                                      if (value != null) {
+                                        viewModel.changeAccountType(value);
+                                      }
+                                    },
+                                  ),
                                 ),
                               ),
                             ),
+
                           ],
                         ),
                       ),
                       Positioned(
-                        top: 300.h,
+                        top: 225.h,
                         left: 16.w,
                         right: 16.w,
                         child: Text(
-                          "\$${viewModel.totalBalance.toStringAsFixed(2)}",
+                          "\$${viewModel.formattedBalance}",
                           style: theme.textTheme.displaySmall?.copyWith(
                             color: AppColors.background,  // Primary color for total balance
-                            fontWeight: FontWeight.bold,
+                            // fontWeight: FontWeight.bold,
                           ),
                         ),
                       ),
                       Positioned(
-                        top: 340.h,
+                        top: 290.h,
                         left: 16.w,
                         right: 16.w,
                         child: Row(
@@ -146,28 +152,36 @@ class _HomeScreenState extends State<HomeScreen> {
                           children: [
                             Text(
                               viewModel.isAccountNumberVisible
-                                  ? viewModel.accountNumber
-                                  : "**** ${viewModel.accountNumber.substring(viewModel.accountNumber.length - 4)}",
-                              style: theme.textTheme.bodyLarge?.copyWith(color: AppColors.background),
-                            ),
-                            IconButton(
-                              icon: Icon(
-                                viewModel.isAccountNumberVisible
-                                    ? Icons.visibility_off
-                                    : Icons.visibility,
-                                color: AppColors.background,
-                              ),
-                              onPressed: viewModel.toggleAccountNumberVisibility,
+                                  ? viewModel.accountNumber // Show full account number
+                                  : "**** **** ${viewModel.accountNumber.substring(viewModel.accountNumber.length - 4)}", // Show masked format
+                              style: theme.textTheme.bodySmall?.copyWith(color: AppColors.background),
                             ),
                           ],
                         ),
                       ),
                       Positioned(
-                        bottom: 20.h,
+                          top: 243.h,
+                          left: 16.w,
+                          right: 16.w,
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          IconButton(
+                            icon: Icon(
+                              viewModel.isAccountNumberVisible ? Icons.visibility_off : Icons.visibility,
+                              color: AppColors.background,
+                            ),
+                            onPressed: viewModel.toggleAccountNumberVisibility,
+                          ),
+                        ],
+                      )
+                      ),
+                      Positioned(
+                        bottom: 10.h,
                         left: 16.w,
                         right: 16.w,
                         child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             ActionButton(label: "Receive", icon: Icons.add_card, onTap: () {}),
                             ActionButton(label: "Send", icon: Icons.credit_card_rounded, onTap: () {}),
@@ -206,7 +220,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 20.h),
+            SizedBox(height: 2.h),
             GridView.builder(
               padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 10.h),
               itemCount: viewModel.upcomingPayments.length,

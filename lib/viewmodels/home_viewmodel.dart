@@ -5,7 +5,7 @@ import 'package:intl/intl.dart'; //import intl for number formatting
 class HomeViewModel extends ChangeNotifier {
   double _totalBalance = 12902.72;
   String _accountType = "Main account";
-  String _accountNumber = "123456789";
+  String _accountNumber = "1234 5654 3789";
   bool _isAccountNumberVisible = false; // Flag to toggle account number visibility
 
   final List<UpcomingPayment> _upcomingPayments = [

@@ -38,7 +38,7 @@ ThemeData appTheme = ThemeData(
   // Text Theme
   textTheme: TextTheme(
     bodyLarge: TextStyle(color: Colors.black, fontSize: 18.sp),
-    bodyMedium: TextStyle(color: Colors.black, fontSize: 16.sp),
+    bodyMedium: TextStyle(color: Colors.black, fontSize: 14.sp),
   ),
 
   // Icon Theme

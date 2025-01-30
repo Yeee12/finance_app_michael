@@ -12,9 +12,9 @@ class ExpensesViewModel with ChangeNotifier {
   ];
 
   final List<PlannedExpense> _plannedExpenses = [
-    PlannedExpense(category: "Investment", percentage: 48, color: Colors.black),
-    PlannedExpense(category: "Healthcare", percentage: 32, color: Colors.grey),
-    PlannedExpense(category: "Self reward", percentage: 18, color: Colors.grey.shade300), // Corrected light grey
+    PlannedExpense(category: "Investment", percentage: 48, color: Colors.grey.shade700), // Darker grey
+    PlannedExpense(category: "Healthcare", percentage: 32, color: Colors.grey.shade500), // Default grey
+    PlannedExpense(category: "Self reward", percentage: 18, color: Colors.grey.shade300), // Lighter grey
   ];
 
   String _selectedTimeFrame = 'M';

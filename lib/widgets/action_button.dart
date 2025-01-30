@@ -23,12 +23,12 @@ class ActionButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap, // Trigger onTap when button is tapped
       child: Container(
-        width: isCircular ? 30 : 100, // Adjust width for circular button
-        height: 30,
+        width: isCircular ? 50 : 125, // Adjust width for circular button
+        height: 45,
         decoration: BoxDecoration(
           color: Colors.white, // Background color
           shape: isCircular ? BoxShape.circle : BoxShape.rectangle, // Change shape
-          borderRadius: isCircular ? null : BorderRadius.circular(12), // Rounded edges if not circular
+          borderRadius: isCircular ? null : BorderRadius.circular(20), // Rounded edges if not circular
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center, // Center items inside container
@@ -36,15 +36,15 @@ class ActionButton extends StatelessWidget {
             Icon(
               icon,
               color: iconColor,
-              size: 28,
+              size: 20,
             ),
             if (!isCircular) ...[
-              SizedBox(width: 8), // Space between icon and text
+              SizedBox(width: 5), // Space between icon and text
               Text(
                 label,
                 style: TextStyle(
-                  fontSize: 14,
-                  fontWeight: FontWeight.w500,
+                  fontSize: 12,
+                  fontWeight: FontWeight.bold,
                   color: textColor, // Apply text color from theme
                 ),
               ),
