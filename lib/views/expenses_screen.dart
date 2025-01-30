@@ -1,7 +1,9 @@
+import 'package:finance_app_michael/core/app_colors.dart';
 import 'package:finance_app_michael/widgets/planned_expense_progress.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../viewmodels/expenses_viewmodel.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ExpensesScreen extends StatelessWidget {
   @override
@@ -12,7 +14,20 @@ class ExpensesScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Expenses'),
+        title: Text(
+          'Expenses',
+          style: GoogleFonts.roboto(
+            color: AppColors.textPrimary,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.more_horiz, color: AppColors.primary),
+            onPressed: () {},
+          ),
+        ],
       ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
@@ -29,27 +44,27 @@ class ExpensesScreen extends StatelessWidget {
                   child: Container(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                     decoration: BoxDecoration(
-                      color: isSelected ? Colors.grey : Colors.transparent,
+                      color: isSelected ? AppColors.accent : Colors.transparent,
                       borderRadius: BorderRadius.circular(15),
-                      border: Border.all(color: Colors.grey),
+                      border: Border.all(color: AppColors.textSecondary),
                     ),
                     child: Text(
                       timeFrame,
-                      style: TextStyle(
+                      style: GoogleFonts.roboto(
                         fontSize: 14,
                         fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                        color: isSelected ? Colors.black : Colors.grey,
+                        color: isSelected ? AppColors.textPrimary : AppColors.textSecondary,
                       ),
                     ),
                   ),
                 );
               }).toList(),
             ),
-            const SizedBox(height: 24), // Space between timeframe selector and chart
+            const SizedBox(height: 24),
 
             // Expense Chart
             SingleChildScrollView(
-              scrollDirection: Axis.horizontal, // Enable horizontal scrolling for the chart
+              scrollDirection: Axis.horizontal,
               child: Row(
                 children: viewModel.expenses.map((expense) {
                   final maxExpense = viewModel.expenses.isNotEmpty
@@ -67,7 +82,7 @@ class ExpensesScreen extends StatelessWidget {
                       children: [
                         Text(
                           '\$${expense.amount.toStringAsFixed(2)}',
-                          style: const TextStyle(fontSize: 12),
+                          style: GoogleFonts.roboto(fontSize: 12, color: AppColors.textPrimary),
                         ),
                         const SizedBox(height: 4),
                         Container(
@@ -75,14 +90,13 @@ class ExpensesScreen extends StatelessWidget {
                           height: barHeight.isFinite ? barHeight : 0,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4),
-                            color: expense.color, // assigned color dynamically
+                            color: expense.color,
                           ),
                         ),
-
                         const SizedBox(height: 4),
                         Text(
                           expense.month,
-                          style: const TextStyle(fontSize: 12),
+                          style: GoogleFonts.roboto(fontSize: 12, color: AppColors.textSecondary),
                         ),
                       ],
                     ),
@@ -91,7 +105,7 @@ class ExpensesScreen extends StatelessWidget {
               ),
             ),
 
-            const SizedBox(height: 40), // Space between expense chart and planned expense progress
+            const SizedBox(height: 40),
 
             // Planned Expense Progress Section
             PlannedExpenseProgress(

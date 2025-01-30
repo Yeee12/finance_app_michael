@@ -1,16 +1,19 @@
-# finance_app_michael
+# Finance App Michael
+A personal finance management app built with Flutter, designed to help users track expenses, monitor planned budgets, and analyze financial trends over different timeframes.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
+## Features
+ Expense Tracking – Visualize and manage your expenses in an interactive bar chart.
+ Timeframe Selection – View financial trends over different periods (Weekly, Monthly, 3M, 6M, Yearly, All).
+ Planned Expenses – Monitor planned budgets with a segmented progress bar.
+ Dark & Light Theme Support (Coming Soon).
 A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+### Tech Stack
+🛠 Flutter – Cross-platform framework for building the UI.
+📦 Provider – State management for handling expenses and UI state.
+🔥 Firebase (Optional) – Cloud Firestore for storing expense data (Future integration).
+🎨 Google Fonts & ScreenUtil – Dynamic text scaling and responsive UI.
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Chanlenges faced
+ the chart gave me issues
+ and getting the  right measurement 

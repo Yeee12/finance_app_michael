@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
+import '../core/app_colors.dart';
 import '../models/expense_model.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class PlannedExpenseProgress extends StatelessWidget {
   final List<PlannedExpense> plannedExpenses;
@@ -14,15 +17,15 @@ class PlannedExpenseProgress extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(16),
+      padding: EdgeInsets.all(16.r),
       decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12),
+        color: AppColors.background,
+        borderRadius: BorderRadius.circular(12.r),
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 8,
-            spreadRadius: 2,
+            color: AppColors.shadow,
+            blurRadius: 8.r,
+            spreadRadius: 2.r,
           ),
         ],
       ),
@@ -33,79 +36,102 @@ class PlannedExpenseProgress extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text(
+              Text(
                 'Planned expenses',
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                style: GoogleFonts.roboto(
+                  fontSize: 18.sp,
+                  fontWeight: FontWeight.bold,
+                  color: AppColors.textPrimary,
+                ),
               ),
               TextButton(
                 onPressed: () {},
-                child: const Text(
+                child: Text(
                   'View details',
-                  style: TextStyle(color: Colors.blue),
+                  style: GoogleFonts.roboto(
+                    color: AppColors.blueText,
+                    fontSize: 14.sp,
+                  ),
                 ),
               ),
             ],
           ),
-          const SizedBox(height: 8),
+          SizedBox(height: 8.h),
 
           // Total Amount
           Text(
             '\$${totalPlannedExpenses.toStringAsFixed(2)}',
-            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+            style: GoogleFonts.roboto(
+              fontSize: 28.sp,
+              fontWeight: FontWeight.bold,
+              color: AppColors.textPrimary,
+            ),
           ),
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
 
           // Progress Bar with Segments
           SizedBox(
-            height: 30,
+            height: 30.h,
             width: double.infinity,
-            child: Row(
-              children: plannedExpenses.asMap().entries.map((entry) {
-                final int index = entry.key;
-                final PlannedExpense expense = entry.value;
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(15.r),
+              child: Row(
+                children: plannedExpenses.asMap().entries.map((entry) {
+                  final int index = entry.key;
+                  final PlannedExpense expense = entry.value;
 
-                return Expanded(
-                  flex: (expense.percentage * 10).toInt(),
-                  child: Container(
-                    margin: EdgeInsets.only(right: index == plannedExpenses.length - 0.5 ? 0 : 1), // Add spacing between segments
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(20), // Adjust radius as needed
-                      child: Container(
-                        height: 20,
-                        color: expense.color, // Assign unique colors
+                  return Expanded(
+                    flex: (expense.percentage * 10).toInt(),
+                    child: Container(
+                      margin: EdgeInsets.only(right: index == plannedExpenses.length - 1 ? 0 : 1.w),
+                      decoration: BoxDecoration(
+                        color: expense.color,
+                        borderRadius: BorderRadius.circular(5.r),
                       ),
                     ),
-                  ),
-                );
-              }).toList(),
+                  );
+                }).toList(),
+              ),
             ),
           ),
 
-          const SizedBox(height: 16),
+          SizedBox(height: 16.h),
 
           // Expense Breakdown List
           Column(
             children: plannedExpenses.map((expense) {
               return Padding(
-                padding: const EdgeInsets.symmetric(vertical: 4),
+                padding: EdgeInsets.symmetric(vertical: 4.h),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Row(
                       children: [
                         Container(
-                          width: 10,
-                          height: 10,
+                          width: 10.w,
+                          height: 10.h,
                           decoration: BoxDecoration(
                             color: expense.color,
                             shape: BoxShape.circle,
                           ),
                         ),
-                        const SizedBox(width: 8),
-                        Text(expense.category),
+                        SizedBox(width: 8.w),
+                        Text(
+                          expense.category,
+                          style: GoogleFonts.roboto(
+                            fontSize: 14.sp,
+                            color: AppColors.textPrimary,
+                          ),
+                        ),
                       ],
                     ),
-                    Text('${expense.percentage.toStringAsFixed(1)}%'),
+                    Text(
+                      '${expense.percentage.toStringAsFixed(1)}%',
+                      style: GoogleFonts.roboto(
+                        fontSize: 14.sp,
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
                   ],
                 ),
               );
