@@ -19,7 +19,6 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final viewModel = Provider.of<HomeViewModel>(context);
     final theme = Theme.of(context);
-    final colorScheme = theme.colorScheme;
 
     return Scaffold(
       backgroundColor: AppColors.background,  // Using AppColors for background color
