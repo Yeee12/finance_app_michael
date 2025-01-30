@@ -73,8 +73,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   child: Stack(
                     children: [
                       Positioned.fill(
-                        child: Image.network(
-                          'https://media.istockphoto.com/id/1793632010/photo/abstract-twist-shape-background.webp?a=1&b=1&s=612x612&w=0&k=20&c=oboIalujtRZFDF8B7wjRpIpxLxZPN4i3vP959yJeHpM=',
+                        child: Image.asset(
+                          'assets/images/card.png',
                           fit: BoxFit.cover,
                         ),
                       ),
