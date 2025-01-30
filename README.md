@@ -14,6 +14,13 @@ A few resources to get you started if this is your first Flutter project:
 🔥 Firebase (Optional) – Cloud Firestore for storing expense data (Future integration).
 🎨 Google Fonts & ScreenUtil – Dynamic text scaling and responsive UI.
 
-## Chanlenges faced
+#### Chanlenges faced
  the chart gave me issues
  and getting the  right measurement 
+
+##### Installation & Setup
+git clone https://github.com/yourusername/finance_app_michael.git
+cd finance_app_michael
+ ###### Install dependencies
+flutter pub get
+flutter run
