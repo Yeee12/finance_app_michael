@@ -11,7 +11,6 @@ A few resources to get you started if this is your first Flutter project:
 ### Tech Stack
 🛠 Flutter – Cross-platform framework for building the UI.
 📦 Provider – State management for handling expenses and UI state.
-🔥 Firebase (Optional) – Cloud Firestore for storing expense data (Future integration).
 🎨 Google Fonts & ScreenUtil – Dynamic text scaling and responsive UI.
 
 #### Chanlenges faced
